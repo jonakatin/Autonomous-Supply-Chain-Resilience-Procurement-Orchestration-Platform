@@ -245,7 +245,7 @@ The override rate is the most valuable of these, because it measures the actual 
 Rationale: slide 2 states the BSE 4100 objectives are to find a problem, propose a solution, and document requirements. Slide 14 lists the deliverables as the concept paper, the data collection tool, the SRS, and the report. The build belongs to BSE 4200. A development roadmap in the front matter consumes space that should describe the problem and the beneficiaries, and it reinforces the impression of over-engineering.
 
 **Add:**
-- Environmental impact. Overprinting means pulped books, wasted imported paper, and wasted energy. This is quantifiable and aligns with the SDG sector listed on slide 10.
+- Environmental impact, but **only as a computed output, never as a claim.** Cut all vague carbon-footprint language. The defensible form is a single measured line derived from data already being collected: copies not overprinted, multiplied by pages per copy and paper weight, gives kilograms of paper not wasted. One quantified line earns credit against the environment and SDG sectors on slide 10. An unquantified paragraph reads as padding and invites the same challenge as the deleted 80 percent claim.
 - Currency and import exposure on paper as a named constraint, which is local knowledge that no foreign ERP models.
 
 ---
