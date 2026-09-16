@@ -24,6 +24,7 @@ The engine is designed to be domain-general, applying to any production industry
 
 Four complementary data sources are used.
 
+<!-- Table: Data categories, sources and purpose -->
 | Data category | What will be collected | Why it is needed | Main source or tool |
 |---|---|---|---|
 | Practitioner research data | How commitment decisions are made today, who approves them, what goes wrong, attitudes to delegating authority to software | Requirements gathering and problem validation | Structured interviews, questionnaire |
@@ -84,6 +85,7 @@ Target roles inside those organisations:
 
 Sample sizes are deliberately small and expert-weighted. The population of educational publishers in Uganda is limited, so a mass survey is neither achievable nor appropriate. Depth substitutes for volume, and this must be stated explicitly in the report so that the small sample reads as a considered design choice rather than a shortfall.
 
+<!-- Table: Proposed sample targets by activity -->
 | Activity | Practical target | Reason |
 |---|---|---|
 | Organisations engaged | 5 to 8; aim for 6 | Enough to show the problem is not specific to one firm |
@@ -106,6 +108,7 @@ Sample sizes are deliberately small and expert-weighted. The population of educa
 
 ## 6. Data Collection Tools and Where to Use Them
 
+<!-- Table: Data collection tools and their use -->
 | Task | Recommended tool | How and where it will be used |
 |---|---|---|
 | Organisation outreach | Formal letter, email, physical visit | Introductory letter on university letterhead, followed by a visit. Physical visits are expected to substantially outperform email in this sector |
@@ -134,6 +137,7 @@ The course requires that the project result from requirements gathered from actu
 
 Maintain this log from the first approach. Include it as an appendix in the final report.
 
+<!-- Table: Fields recorded in the outreach contact log -->
 | Field | Purpose |
 |---|---|
 | Organisation | Name of publisher, printer, supplier or distributor |
@@ -209,6 +213,7 @@ If an organisation will share only a little, these three items matter most, beca
 
 **Title master**
 
+<!-- Table: Title master dataset -->
 | Field | Example | Priority | Purpose |
 |---|---|---|---|
 | title_id | T001 | Required | Anonymous identifier for the title |
@@ -223,6 +228,7 @@ If an organisation will share only a little, these three items matter most, beca
 
 **Print run history**, the central dataset for the decision model
 
+<!-- Table: Print run history dataset -->
 | Field | Example | Priority | Purpose |
 |---|---|---|---|
 | run_id | R0451 | Required | Identifies the commitment |
@@ -237,6 +243,7 @@ If an organisation will share only a little, these three items matter most, beca
 
 **Sales history**
 
+<!-- Table: Sales history dataset -->
 | Field | Example | Priority | Purpose |
 |---|---|---|---|
 | title_id | T001 | Required | Links to the title |
@@ -247,6 +254,7 @@ If an organisation will share only a little, these three items matter most, beca
 
 **Stock and write-off**
 
+<!-- Table: Stock and write-off dataset -->
 | Field | Example | Priority | Purpose |
 |---|---|---|---|
 | title_id | T001 | Required | Links to the title |
@@ -258,6 +266,7 @@ If an organisation will share only a little, these three items matter most, beca
 
 **Supplier and input**
 
+<!-- Table: Supplier and input dataset -->
 | Field | Example | Priority | Purpose |
 |---|---|---|---|
 | supplier_id | P003 | Required | Anonymous identifier |
@@ -285,6 +294,7 @@ This contingency must be stated in the plan rather than improvised later.
 
 ## 10. Data Needed for Each Analytical Component
 
+<!-- Table: Data required by each analytical component -->
 | Component | Data required | Output |
 |---|---|---|
 | Demand forecasting | Sales history by term over several cycles, per title | Forecast mean and variance |
@@ -306,6 +316,7 @@ Synthetic data is **seeded from the real sample** so that generated patterns rem
 
 ### 11.1 Scenarios to Generate
 
+<!-- Table: Synthetic data scenarios -->
 | Scenario | Why it is needed |
 |---|---|
 | Stable title with clean seasonality | Baseline case |
@@ -370,6 +381,7 @@ Interview participants are identifiable individuals, so the **Data Protection an
 
 ## 15. Data Storage and Access Control
 
+<!-- Table: Data storage locations and access control -->
 | Data type | Location | Access |
 |---|---|---|
 | Raw commercial data | Restricted shared drive folder | Four team members and the supervisor only |
@@ -445,6 +457,7 @@ Participants are practitioners, not students, because the question being tested 
 
 ## 19. Timeline
 
+<!-- Table: Data collection timeline -->
 | Period | Dates | Activity | Expected output |
 |---|---|---|---|
 | Week 1 | 16 to 20 September 2026 | Finalise this plan, the interview guide, the data request template and the consent statement. Send first outreach letters to three organisations. | Instruments ready, outreach begun |
@@ -462,6 +475,7 @@ Participants are practitioners, not students, because the question being tested 
 
 ## 20. Responsibilities
 
+<!-- Table: Allocation of data responsibilities -->
 | Member | Primary responsibility | Shared responsibility |
 |---|---|---|
 | Dev Johnson | Organisation outreach, visits and relationship management, given existing contacts in the sector | Interview participation, contact log upkeep |
@@ -477,6 +491,7 @@ All four members must understand the full data lifecycle and the confidentiality
 
 Use practitioners to establish how the decision is really made, a small volume of real operational history to calibrate the model, synthetic data seeded from that history to provide volume and edge cases, and practitioners again to evaluate whether they would delegate the decision.
 
+<!-- Table: Summary of the recommended data strategy -->
 | Stage | Target | Main result |
 |---|---|---|
 | Problem understanding | 6 organisations, 15 interviews | Evidence of how commitment decisions fail, and what trust would require |
@@ -490,6 +505,7 @@ Use practitioners to establish how the decision is really made, a small volume o
 
 ## Appendix A: Print Run History CSV Template
 
+<!-- Table: Print run history CSV template with worked example rows -->
 | run_id | title_id | decision_date | quantity_committed | unit_production_cost | printer_id | delivery_promised | delivery_actual | period | units_sold | unit_selling_price | units_written_off | salvage_value_per_unit |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
 | R0451 | T001 | 2025-06-14 | 10000 | 8500.00 | P003 | 2025-07-20 | 2025-08-02 | 2025-T3 | 8750 | 25000.00 | 300 | 500.00 |
