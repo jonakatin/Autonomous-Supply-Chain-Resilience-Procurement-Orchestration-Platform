@@ -96,7 +96,7 @@ Pre-empting the objection is stronger than hoping it is not raised. Include this
 | Human reads a dashboard and decides | Agent decides and reasons, human authorises |
 | Reactive alert at a fixed threshold | Forecast-driven, lead-time aware, seasonally adjusted |
 | Output is a report | Output is a purchase order, a supplier email, and a full reasoning trace |
-| Satisfies no analytics requirement | Forecasting, optimisation, and multi-step agent reasoning |
+| Satisfies no analytics requirement | Descriptive, diagnostic, predictive and prescriptive analytics (see section 7b) |
 | Data entry and retrieval | Autonomous action under human authority |
 
 ---
@@ -106,11 +106,15 @@ Pre-empting the objection is stronger than hoping it is not raised. Include this
 Slide 9 requires that a project "tests acquired knowledge such as algorithms." A supervisor will reasonably ask what the team engineered versus what the language model provided. Answer it before it is asked.
 
 **The team's engineering work:**
-- Depletion forecasting from sales velocity
+- Newsvendor optimal order quantity for the single-period print run commitment
+- Demand forecasting by Holt-Winters triple exponential smoothing over the term cycle
 - Dynamic reorder point incorporating lead time variance
-- Safety stock computation under seasonal demand
+- Safety stock computation under joint demand and lead time variability
 - Economic order quantity adapted to discrete, indivisible print runs
 - Curriculum-change risk as an explicit input to the decision
+- Forecast validation by walk-forward backtesting against a naive seasonal baseline
+
+Section 7b sets out these analytics in full, with formulas and a worked example.
 
 **The language model's role:**
 - Orchestrating multi-step tool calls
@@ -118,6 +122,79 @@ Slide 9 requires that a project "tests acquired knowledge such as algorithms." A
 - Drafting the natural-language purchase order and supplier email
 
 The decision mathematics is classical, implementable, and examinable. The language model wraps it. Stating this division explicitly converts a perceived weakness into a demonstrated strength.
+
+---
+
+## 7b. The analytics layer, and how slide 11 is satisfied
+
+Slide 11 states: "DON'T DO A PROJECT with Only Basic data entry and retrieval (Information Systems MUST Show Data analytics)."
+
+This section exists so that the analytics can be pointed at directly rather than asserted. The analytics run in four tiers.
+
+| Tier | Question answered | What is computed |
+|---|---|---|
+| Descriptive | What happened? | Sales velocity per title, term-cycle seasonal index, supplier lead time variance, stock ageing, ABC classification by revenue contribution, working capital tied per title |
+| Diagnostic | Why did it happen? | Forecast error decomposed into trend, seasonal and residual components; stockout attribution to forecast error, lead time slip or under-commitment; supplier reliability attribution |
+| Predictive | What will happen? | Demand forecasting by Holt-Winters triple exponential smoothing across the term cycle; depletion date projection; lead time modelled as a distribution rather than a point estimate; probability of stockout within the lead time window |
+| Prescriptive | What should be done? | Newsvendor optimal order quantity, dynamic reorder point, safety stock under joint demand and lead time variance, order quantity adjusted for press setup cost and volume price breaks, multi-criteria supplier selection |
+
+### The core model: a print run is a newsvendor problem
+
+A print run is a single-period commitment made before demand is known, with no opportunity to reorder inside the selling window, and with asymmetric costs on either side of the error. This is exactly the problem class the newsvendor model addresses, a classical result in operations research attributed to Arrow, Harris and Marschak.
+
+**Critical ratio** = Cu / (Cu + Co)
+
+**Optimal quantity** Q* = F inverse (critical ratio), where F is the cumulative distribution of forecast demand.
+
+Where Cu is the underage cost, being the margin lost on demand that could not be filled, and Co is the overage cost, being the capital sunk in units that are never sold.
+
+**Worked example.**
+
+| Input | Value |
+|---|---|
+| Print cost per copy | UGX 8,500.00 |
+| Sale price to schools | UGX 25,000.00 |
+| Salvage value of an unsold copy | UGX 500.00 |
+| Underage cost Cu | UGX 16,500.00 |
+| Overage cost Co | UGX 8,000.00 |
+| Critical ratio | 0.6735 |
+| Forecast demand | Normal, mean 10,000, standard deviation 2,500 |
+| z at 0.6735 | 0.45 |
+| **Optimal print run Q*** | **11,125 copies** |
+
+The result is the argument in a single line. A manager estimating by eye orders 10,000, the mean. The analysis prescribes 11,125, because underage costs roughly twice what overage costs and the optimum therefore sits deliberately above the mean. That number cannot be produced by data entry and retrieval. It falls out of a cost structure combined with a demand distribution, which is precisely what slide 11 asks to see.
+
+### Supporting formulas
+
+**Safety stock** under both demand and lead time variability:
+
+SS = Z × square root of ( LT_mean × sigma_d squared + d_mean squared × sigma_LT squared )
+
+**Reorder point:**
+
+ROP = ( d_mean × LT_mean ) + SS
+
+**Economic order quantity**, as the continuous-replenishment baseline the print run case is compared against:
+
+EOQ = square root of ( 2 × D × S / H )
+
+where D is annual demand, S is setup or order cost, and H is holding cost per unit per year.
+
+### Validating the analytics
+
+Analytics that are never validated are assertions. The report must include:
+
+- Forecast accuracy as MAPE and RMSE, measured against a naive seasonal baseline such as "same as the equivalent term last year"
+- **Walk-forward backtesting**, so that no future term leaks into a past prediction
+- An honest statement of the result. If the model does not beat the naive baseline, report that. It is still a finding, and reporting it is better science than quietly tuning until a favourable number appears.
+
+### Making the analysis visible
+
+A practical trap worth naming. If every screen in the dashboard is a table of rows, a reader sees data entry and retrieval regardless of the quality of the mathematics behind it. At least three screens must display analysis rather than records:
+
+1. The demand forecast with its confidence band
+2. The service level versus cost tradeoff curve, showing why Q* sits where it does
+3. Supplier reliability as distributions, not as supplier records
 
 ---
 
