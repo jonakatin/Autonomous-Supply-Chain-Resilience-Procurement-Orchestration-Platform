@@ -19,7 +19,7 @@ The project itself is sound and is not an inventory management system. It has si
 
 ## 2. The single change that fixes everything
 
-The project was named after its **data source** instead of its **decision**.
+The project has been **described** by its **data source** instead of by its **decision**.
 
 Inventory is the input. The output is a capital commitment decision. Those are two different projects, and only one of them appears on the banned list.
 
@@ -32,13 +32,18 @@ Inventory is the input. The output is a capital commitment decision. Those are t
 
 ---
 
-## 3. Promote the vertical from example to identity
+## 3. A general engine, validated on one product
 
-In the meeting of 16 September 2026 the team chose book publishing and paper supply as a "running example." It should stop being an example and become the identity of the project.
+The lecturer asked the team to choose a single product. The team also intends the system to serve any production industry that commits capital ahead of demand. These are not in conflict, because they describe different layers:
 
-Textbook publishing is not a generic inventory problem. It is a **discrete, irreversible, high-value commitment made months ahead of demand, against a hard seasonal deadline, using imported inputs on long lead times.**
+- **The system is domain-general.** A procurement decision engine for any production industry with supplier lead times, demand variability and irreversible capital commitment. This is the contribution.
+- **The validation case is a single product.** Textbooks, and the paper behind them. This is the evidence, and it is what satisfies the lecturer's instruction and slide 9's requirement for requirements from actual beneficiaries.
 
-Why that matters, stated plainly:
+State both explicitly. "A general procurement decision engine, validated on textbook print runs" is a stronger framing than either half alone, and it is how credible engineering work is normally structured. The generality is then carried in the paper by a named section on generalisability, plus future work naming the other industries the engine extends to.
+
+Why textbooks are a good validation case rather than a limiting one:
+
+Textbook publishing is not a generic inventory problem. It is a **discrete, irreversible, high-value commitment made months ahead of demand, against a hard seasonal deadline, using imported inputs on long lead times.** It exercises every hard property the general engine must handle, which is exactly what makes it a good test case.
 
 - A publisher decides in one moment how many copies to print. There is no incremental reorder. It is one large, binding commitment.
 - The deadline is fixed by the school term. Missing it does not delay the sale, it destroys the sale, because a textbook that arrives after the term started has lost that term's cohort entirely.
@@ -49,17 +54,21 @@ That last property is a genuine statistical difficulty, and the brief's recommen
 
 ---
 
-## 4. Title
+## 4. Title: keep it
 
-The current title, "Autonomous Supply Chain Resilience and Procurement Orchestration Platform", is nine words that describe an architecture, name no beneficiary, and state no outcome. The word "platform" is the strongest single signal of over-engineering in the whole package.
+**Decision: the existing title stands.** "Autonomous Supply Chain Resilience and Procurement Orchestration Platform" has already been submitted and accepted by the lecturer. Changing an accepted title creates a paperwork problem, signals indecision to a supervisor, and gains nothing.
 
-Recommended academic title:
+An earlier draft of this brief recommended renaming. That recommendation was wrong, for a specific reason: the title does not contain the word "inventory". It says supply chain and procurement. The title was never what exposed the project to the banned list.
 
-> **Print Run Intelligence: An Explainable Agentic AI System for Autonomous Procurement Decisions in Ugandan Publishing**
+**The exposure is in the body text, not the title.** Three sentences do most of the damage:
+
+- Executive summary: "transition inventory control from passive record-keeping"
+- Executive summary: "Traditional enterprise inventory software operates reactively"
+- Section 2 opening: "challenges managing multi-tiered inventory"
+
+A reader who sees only the title sees a procurement system. A reader who reaches the first paragraph sees an inventory system. Rewrite those sentences in procurement-decision language and the risk is handled, with the title untouched.
 
 Product name stays **LogicSynapse AI**.
-
-Naming principle, drawn from how project catalogues index work: name the outcome achieved and the technique used, never the architecture.
 
 ---
 
@@ -70,6 +79,10 @@ Replace the current executive summary opening with this:
 > Ugandan publishers commit to a print run months before they know demand. Print too many and the cash is pulped. Print too few and you lose an entire school term, because there is no second chance at a term. LogicSynapse is an AI agent that makes that call, shows its reasoning line by line, and waits for a human to approve before a single shilling is spent.
 
 Fifteen seconds, names the beneficiary, names the money, names the consequence, and contains no banned vocabulary.
+
+Where the general framing is needed instead, for example when the audience is not publishing-specific, use this and then drop into the textbook case as the worked example:
+
+> Any manufacturer has to commit money to raw materials long before it knows what demand will be. Commit too much and the capital is dead. Commit too little and you miss the window entirely. LogicSynapse is an AI agent that makes that commitment decision, shows its reasoning step by step, and waits for a human to approve before any money moves. We validate it on textbook printing, where the deadline is a school term and getting it wrong costs a publisher the whole cohort.
 
 ---
 
@@ -165,7 +178,7 @@ Rationale: slide 2 states the BSE 4100 objectives are to find a problem, propose
 | Risk | Severity | Action |
 |---|---|---|
 | No beneficiary data by Friday 18 September | Critical | Contact three publishers, not one. Fountain Publishers is currently a single point of failure. Document the outreach itself, since slide 9 requires evidence of requirements from actual beneficiaries. |
-| Supervisor pattern-matches the title to slide 12 | High | Rename and rewrite the summary today, before the paper is read. |
+| Supervisor pattern-matches the body text to slide 12 | High | Rewrite the executive summary and section 2 opening in procurement-decision language today. The title stays as submitted. |
 | Repositioning read as evasion rather than substance | High | Be able to explain, on demand, why an irreversible discrete print run months ahead of a fixed deadline is a different decision class from reordering stock. The defence must be substantive, not linguistic. |
 | A past cohort already did an inventory project | Medium | Slide 11 requires checking library books and the shared spreadsheets of past projects. Nobody has done this check yet. Do it, and be ready to name the difference. |
 | Curriculum change breaks forecasting | Medium | Do not hide it. Make it an explicit input to the agent's reasoning and a discussion point in the report. |
@@ -174,7 +187,7 @@ Rationale: slide 2 states the BSE 4100 objectives are to find a problem, propose
 
 ## 12. Immediate actions
 
-1. **Today.** Rewrite the title, executive summary and problem statement in the shared Google Doc, so that Isaac's polish pass works on the corrected version rather than the old one.
+1. **Today.** Rewrite the executive summary and problem statement in the shared Google Doc, removing inventory-management vocabulary in favour of procurement-decision vocabulary. Leave the title as submitted. Do this before Isaac's polish pass, so he works on the corrected version.
 2. **Before Friday 18 September.** Outreach to three publishers, with the outreach record kept as part of the data collection deliverable.
 3. **This week.** Check the college library and the shared past-project spreadsheets for prior inventory projects, and write down precisely how this project differs.
 4. **Before the recording.** Add the "Why this is not an inventory management system" slide to the presentation deck.
@@ -188,6 +201,7 @@ Drawn from slide 9, "Qualities of a good ICT project".
 | Criterion | How the repositioned project satisfies it |
 |---|---|
 | Originality and innovation | Agentic, action-taking AI under human authorisation, as distinct from a single model that outputs a prediction and stops |
+| Single product focus, as instructed | Textbooks and paper named as the validation product, with the engine itself kept domain-general |
 | Extension of existing work | Builds on established inventory theory (reorder point, economic order quantity) and applies it to discrete print run commitment |
 | Does not reinvent the wheel | Uses existing model and framework infrastructure rather than rebuilding it |
 | Benefits communities | Protects publisher working capital, reduces paper waste, and protects access to textbooks within the term they are needed |
